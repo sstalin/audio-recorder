@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            .container {
+                display: flex;
+                align-items: center;
+            }
+            .btn {
+                width: 100px;
+                height: 35px;
+                border-radius: 0.25rem;
+                line-height: 35px;
+                cursor: pointer;
+            }
+            .cell{
+                padding: 10px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="cell">
+                <button id="startBtn" class="btn">Record</button>
+            </div>
+            <div class="cell">
+                <button id="stopBtn" class="btn">Stop</button>
+            </div>
+            <form>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </body>
+    <script src="{{url_for('static', filename='app.js')}}"></script>
+</html>
