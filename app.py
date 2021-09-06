@@ -16,7 +16,8 @@ def index():
 def upload():
     if "audio_file" in request.files:
         file = request.files['audio_file']
-        dst = os.path.join(os.path.curdir, 'uploads', "test_audio.webm")
+        print(file, file=sys.stderr)
+        dst = os.path.join(os.path.curdir, 'uploads', "test_audio.ogg")
         file.save(dst)
     return jsonify(ok=True)
 

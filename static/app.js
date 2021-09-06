@@ -22,9 +22,13 @@
                     console.log(recorder.state);
                 });
 
+                recorder.addEventListener("dataavailable", (e) => {
+                    console.log("adding data ...");
+                    chunks.push(e.data)
+                });
+
                 stopBtn.addEventListener('click', (e) => {
                     if (recorder.state !== "inactive") {
-                        chunks.push(recorder.requestData());
                         recorder.stop();
                         e.target.disabled = true;
                         submitBtn.disabled = false;
@@ -35,7 +39,7 @@
                 form.addEventListener('submit', (e) => {
                     e.preventDefault();
                     const fd = new FormData();
-                    const blob = new Blob(chunks, {'type' : recorder.mimeType })
+                    const blob = new Blob(chunks, {"type" : "audio/ogg; codecs=opus"})
                     console.log("->>>>", recorder.mimeType);
                     fd.append('audio_file', blob);
                     fetch('http://localhost:5000/upload', {method: "POST", cache: "no-cache", body: fd})
