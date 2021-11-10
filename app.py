@@ -17,7 +17,11 @@ def upload():
     if "audio_file" in request.files:
         file = request.files['audio_file']
         print(file, file=sys.stderr)
-        dst = os.path.join(os.path.curdir, 'uploads', "test_audio.ogg")
+        uploads_dir = os.path.join(os.path.curdir, 'uploads')
+        if not os.path.isdir(uploads_dir):
+            os.mkdir(uploads_dir)
+        dst = os.path.join(uploads_dir, "test_audio.ogg")
         file.save(dst)
+        print(f'saved file to {dst}', file=sys.stderr)
     return jsonify(ok=True)
 
